@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<!--수정 폼은 상세페이지를 복사해서 기본키는 읽기 전용, 나머지는 읽기 전용 삭제-->
+<div layout:fragment="content">
+    <form action="/product/update" method="post">
+        <div class="row mb-3 mt-3">
+            <label for="pno" class="form-label">번호:</label>
+            <input type="text" class="form-control" id="pno" name="pno" th:value="${data.pno}" readonly>
+        </div>
+        <div class="row mb-3 mt-3">
+            <label for="pname" class="form-label">상품명:</label>
+            <input type="text" class="form-control" id="pname" name="pname" th:value="${data.pname}">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">가격:</label>
+            <input type="number" class="form-control" id="price" name="price" th:value="${data.price}">
+        </div>
+        <div class="mb-3">
+            <label for="quan" class="form-label">수량:</label>
+            <input type="number" class="form-control" id="quan" name="quan" th:value="${data.quan}">
+        </div>
+        <!--textarea를 추가할 경우에는 readonly를 시작태그와 종료태그 사이에 넣어주기
+        value는 th:text 또는 [[@{data.}]] 을 마찬가지로 넣어주기-->
+
+        <button type="submit" class="btn btn-success">수정</button>
+        <a th:href="@{/product/list}">
+            <button type="button" class="btn btn-secondary">취소</button>
+        </a>
+    </form>
+</div>
+</html>
